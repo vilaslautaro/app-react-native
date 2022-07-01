@@ -1,20 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, Button } from "react-native";
+import { Form, Input, Screen } from "./App.styles";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Hola coder</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Screen>
+      <Form>
+        <Input placeholder="Ingrese aqui" />
+        <Button title="Add" onPress={() => {}} />
+      </Form>
+      <View></View>
+    </Screen>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
