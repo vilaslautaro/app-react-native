@@ -1,5 +1,5 @@
 import { FlatList } from "react-native";
-import { ViewStyles } from "../App.styles";
+import { ViewStyles } from "../Home.styles";
 import { ItemList } from "./ItemList";
 
 export const ListContainer = ({ itemList, onHandlerModal }) => {

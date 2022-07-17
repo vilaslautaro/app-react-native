@@ -1,4 +1,4 @@
-import { ContainerItemList, TextStyles } from "../App.styles";
+import { ContainerItemList, TextStyles } from "../Home.styles";
 
 export const ItemList = ({ onHandlerModal, data }) => {
   return (

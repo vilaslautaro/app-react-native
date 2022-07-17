@@ -1,12 +1,9 @@
-import { Form, Input } from "../App.styles";
+import { Form, Input } from "../Home.styles";
 import { Button, View } from "react-native";
 
-export const CustomForm = ({
-  setTextItem,
-  setItemList,
-  textItem,
-  itemList,
-}) => {
+export const CustomForm = (props) => {
+  const { setTextItem, setItemList, textItem, itemList } = props;
+  
   const handleName = (text) => {
     setTextItem(text);
   };
@@ -16,7 +13,7 @@ export const CustomForm = ({
       setItemList([...itemList, { id: Math.random(), value: textItem }]);
       setTextItem("");
     } else {
-      alert('Para agregar un elemento por favor ingrese un nombre')
+      alert("Para agregar un elemento por favor ingrese un nombre");
     }
   };
 
