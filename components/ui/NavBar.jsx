@@ -1,5 +1,5 @@
-import React from "react";
 import { useForm } from "react-hook-form";
+import { Button } from "react-native";
 import { CustomInput } from "../CustomInput";
 import {
   ButtonStyles,
@@ -9,7 +9,7 @@ import {
   TextHeader,
 } from "./NavBar.styles";
 
-const NavBar = ({ title }) => {
+const NavBar = ({ title, addHouse, createHouse }) => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (values) => {
@@ -20,11 +20,20 @@ const NavBar = ({ title }) => {
     <ContainerHeader>
       <TextHeader>{title}</TextHeader>
       <ContainerSubNavBar>
-        <CustomInput register={register} name="searchValue" />
+        <CustomInput
+          placeholder="Encontrá lo que buscas"
+          register={register}
+          name="searchValue"
+          type="text"
+        />
         <ButtonStyles onPress={handleSubmit(onSubmit)}>
           <TextButton>🔎</TextButton>
         </ButtonStyles>
       </ContainerSubNavBar>
+      <Button
+        title={createHouse ? "Volver al inicio" : "Añadir alquiler"}
+        onPress={() => addHouse()}
+      />
     </ContainerHeader>
   );
 };

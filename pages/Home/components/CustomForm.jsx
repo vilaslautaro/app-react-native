@@ -3,7 +3,7 @@ import { Button, View } from "react-native";
 
 export const CustomForm = (props) => {
   const { setTextItem, setItemList, textItem, itemList } = props;
-  
+
   const handleName = (text) => {
     setTextItem(text);
   };

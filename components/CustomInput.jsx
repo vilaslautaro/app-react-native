@@ -2,10 +2,7 @@ import { TextInput } from "react-native";
 import styled from "styled-components/native";
 
 export const CustomInput = ({ register, name, ...rest }) => {
-  console.log(name)
-  console.log(register)
-  console.log(rest)
-  return <InputStyles {...rest} {...register(name)} />;
+  return <InputStyles {...register(name)} {...rest} />;
 };
 
 const InputStyles = styled(TextInput)`
