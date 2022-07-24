@@ -1,7 +1,7 @@
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import { Screen } from "./App.styles";
-import ShopNavigator from "./navigation/ShopNavigator";
+import ShopTabNavigator from "./navigation/ShopTabNavigator";
 
 export default function App() {
   const [loaded] = useFonts({
@@ -14,5 +14,5 @@ export default function App() {
 
   if (!loaded) return <AppLoading />;
 
-  return <ShopNavigator />;
+  return <ShopTabNavigator />
 }
