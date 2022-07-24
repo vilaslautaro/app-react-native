@@ -2,8 +2,10 @@ import { useState } from "react";
 import { CustomForm } from "./components/CustomForm";
 import { ListContainer } from "./components/ListContainer";
 import { ModalConfirm } from "../../components/Modal";
+import { Screen } from "../../App.styles";
+import { Button } from "react-native";
 
-const Home = () => {
+const Home = ({navigation}) => {
   const [textItem, setTextItem] = useState("");
   const [itemList, setItemList] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -27,7 +29,8 @@ const Home = () => {
   };
 
   return (
-    <>
+    <Screen>
+      <Button onPress={() => navigation.navigate('Publish')} title="Publicar propiedad"/>
       <ModalConfirm
         showModal={showModal}
         deleteItem={deleteItem}
@@ -41,7 +44,7 @@ const Home = () => {
         itemList={itemList}
       />
       <ListContainer itemList={itemList} onHandlerModal={onHandlerModal} />
-    </>
+    </Screen>
   );
 };
 
