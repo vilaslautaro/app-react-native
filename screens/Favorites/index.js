@@ -5,7 +5,6 @@ import Favorite from "./components/Favorite";
 
 const Favorites = () => {
   const { dataFavorites } = useSelector((state) => state.favorites);
-  console.log(dataFavorites);
 
   return (
     <Screen>
@@ -14,9 +13,11 @@ const Favorites = () => {
         <FlatList
           data={dataFavorites}
           renderItem={(data) => {
-            return <Favorite item={data} />;
+            return <Favorite item={data.item} />;
           }}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => {
+            console.log(item)
+            return item.id}}
         />
       </View>
     </Screen>
