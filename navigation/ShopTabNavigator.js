@@ -1,69 +1,68 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { MaterialCommunityIcons } from "react-native-vector-icons";
-import { colors } from "../constants/colors";
+import { useEffect } from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import AddProperties from "../screens/AddProperties";
 import Home from "../screens/Home";
-import Search from "../screens/Search";
 import Favorites from "../screens/Favorites";
+import SearchNavigator from "./SearchNavigator";
+import { colors } from "../constants/colors";
 
-const ShopNavigator = () => {
-  const Tab = createMaterialBottomTabNavigator();
+const ShopTabNavigator = ({ navigation, route }) => {
+  const Tabs = createBottomTabNavigator();
   const { bg, button, buttonActive } = colors();
 
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="Home"
-        activeColor={buttonActive}
-        inactiveColor={button}
-        barStyle={{ backgroundColor: bg, paddingBottom: 5 }}
-      >
-        <Tab.Screen
-          name="Home"
-          component={Home}
-          options={{
-            title: "Propiedades",
-            tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="home" color={color} size={26} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Search"
-          component={Search}
-          options={{
-            title: "Buscar",
-            tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="magnify" color={color} size={26} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Publish"
-          component={AddProperties}
-          options={{
-            title: "Publicar",
-            tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="plus" color={color} size={26} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Favoritos"
-          component={Favorites}
-          options={{
-            title: "Favoritos",
-            tabBarBadge: 1,
-            tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="heart" color={color} size={26} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tabs.Navigator
+      initialRouteName="Inicio"
+      activeColor={buttonActive}
+      inactiveColor={button}
+      barStyle={{ backgroundColor: bg, paddingBottom: 5 }}
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Tabs.Screen
+        name="Inicio"
+        component={Home}
+        options={() => ({
+          title: "Inicio",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="home" color={color} size={26} />
+          ),
+        })}
+      />
+      <Tabs.Screen
+        name="Buscar"
+        component={SearchNavigator}
+        options={() => ({
+          title: "Buscar",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="search" color={color} size={26} />
+          ),
+        })}
+      />
+      <Tabs.Screen
+        name="Publicar"
+        component={AddProperties}
+        options={() => ({
+          title: "Publicar",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="plus" color={color} size={26} />
+          ),
+        })}
+      />
+      <Tabs.Screen
+        name="Favoritos"
+        component={Favorites}
+        options={() => ({
+          title: "Favoritos",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="heart" color={color} size={26} />
+          ),
+        })}
+      />
+    </Tabs.Navigator>
   );
 };
 
-export default ShopNavigator;
+export default ShopTabNavigator;

@@ -1,7 +1,8 @@
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
-import { Screen } from "./App.styles";
-import ShopTabNavigator from "./navigation/ShopTabNavigator";
+import MainNavigation from "./navigation";
+import { Provider } from "react-redux";
+import store from "./store";
 
 export default function App() {
   const [loaded] = useFonts({
@@ -14,5 +15,9 @@ export default function App() {
 
   if (!loaded) return <AppLoading />;
 
-  return <ShopTabNavigator />
+  return (
+    <Provider store={store}>
+      <MainNavigation />
+    </Provider>
+  );
 }

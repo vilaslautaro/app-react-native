@@ -7,7 +7,7 @@ const Search = ({ navigation }) => {
       <View>
         <Text>Buscar</Text>
         <Button
-          title="Regresar a propiedades"
+          title="Regresar a inicio"
           onPress={() => navigation.navigate("Home")}
         />
       </View>
