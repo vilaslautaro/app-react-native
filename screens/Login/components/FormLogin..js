@@ -6,7 +6,7 @@ import {
   InputStyled,
   LabelStyled,
   TextError,
-} from "../../../styles/Components";
+} from "../../../styles";
 
 export const FormLogin = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ export const FormLogin = () => {
   const onSubmit = ({ email, password }) => {
     console.log(email);
     console.log(password);
-    dispatch(loginUser(email, password));
+    //dispatch(loginUser(email, password));
   };
 
   return (

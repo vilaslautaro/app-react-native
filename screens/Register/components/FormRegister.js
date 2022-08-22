@@ -6,7 +6,7 @@ import {
   InputStyled,
   LabelStyled,
   TextError,
-} from "../../../styles/Components";
+} from "../../../styles";
 
 export const FormRegister = () => {
   const dispatch = useDispatch();

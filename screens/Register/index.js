@@ -1,6 +1,6 @@
 import { Text } from "react-native";
 import { Screen } from "../../App.styles";
-import { ButtonSecondary, TitleStyled } from "../../styles/Components";
+import { ButtonSecondary, TitleStyled } from "../../styles";
 import { FormRegister } from "./components/FormRegister";
 
 export const Register = ({ navigation }) => {
