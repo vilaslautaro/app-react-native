@@ -6,9 +6,17 @@ const Stack = createNativeStackNavigator();
 
 const AuthNavigator = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Ingresar" component={Login}></Stack.Screen>
-      <Stack.Screen name="Registrarse" component={Register}></Stack.Screen>
+    <Stack.Navigator initialRouteName="Login">
+      <Stack.Screen
+        name="Login"
+        options={{ title: "Ingresar" }}
+        component={Login}
+      />
+      <Stack.Screen
+        name="Register"
+        options={{ title: "Registrarse" }}
+        component={Register}
+      />
     </Stack.Navigator>
   );
 };

@@ -6,12 +6,14 @@ import { ListContainer } from "./components/ListContainer";
 import { Screen } from "../../App.styles";
 
 const Home = () => {
-  const { dataProducts } = useSelector((state) => state.products);
+  /* const { dataProducts } = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getProducts());
-  }, []);
+  }, []); */
+
+  const dataProducts = [];
 
   return (
     <Screen>

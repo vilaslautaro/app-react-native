@@ -5,8 +5,8 @@ import loginReducer from "./login.reducer";
 import registerReducer from "./register.reducer";
 
 export const RootReducer = combineReducers({
-  favorites: favoritesReducer,
-  products: productsReducer,
+  //favorites: favoritesReducer,
+  //products: productsReducer,
   login: loginReducer,
-  register: registerReducer,
+  //register: registerReducer,
 });

@@ -5,15 +5,14 @@ const URL_API = process.env.FIREBASE_API_URL_DB;
 export const getFavorites = () => {
   return async (dispatch) => {
     try {
-      const response = await fetch(`${URL_API}/favorites.json`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const result = await response.json();
-      console.log(result);
-      dispatch({ type: GET_FAVORITES, payload: result });
+      const response = await getDocs(collection(db, "favorites"));
+      console.log(response.docs);
+      const favorites = response.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      console.log(favorites);
+      dispatch({ type: GET_FAVORITES, payload: favorites });
     } catch (error) {
       console.log(error);
     }

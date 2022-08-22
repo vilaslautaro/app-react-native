@@ -1,27 +1,20 @@
 import { REGISTER_USER } from "../types";
-
-const URL_AUTH_API = process.env.FIREBASE_API_KEY_ID;
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../database/firebase";
 
 export const registerUser = (email, password) => {
   return async (dispatch) => {
     try {
-      const response = await fetch(`${URL_AUTH_API}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-          returnSecureToken: true,
-        }),
-      });
-      const data = await response.json();
-      console.log(data);
+      const response = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log(response);
       dispatch({
         type: REGISTER_USER,
-        token: data.token,
-        userId: data.localId,
+        token: "",
+        userId: "",
         error: "",
       });
     } catch (error) {

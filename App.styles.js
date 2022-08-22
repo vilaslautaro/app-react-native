@@ -11,7 +11,6 @@ export const Screen = styled(View)`
   flex-flow: column wrap;
   align-items: center;
   justify-content: center;
-  font-family: "OSRegular";
 `;
 
 export const ContainerMain = styled(View)`

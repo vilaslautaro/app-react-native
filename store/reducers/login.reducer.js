@@ -1,10 +1,11 @@
-import { LOGIN_USER } from "../types";
+import { LOGIN_USER, LOGOUT_USER } from "../types";
 
 const initialState = {
   token: "",
   userId: "",
   error: "",
   dataUser: "",
+  userIsLogged: false,
 };
 
 const loginReducer = (state = initialState, action) => {
@@ -16,6 +17,16 @@ const loginReducer = (state = initialState, action) => {
         userId: action.userId,
         error: action.error,
         dataUser: action.dataUser,
+        userIsLogged: action.userIsLogged,
+      };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        token: action.token,
+        userId: action.userId,
+        error: action.error,
+        dataUser: action.dataUser,
+        userIsLogged: action.userIsLogged,
       };
 
     default:

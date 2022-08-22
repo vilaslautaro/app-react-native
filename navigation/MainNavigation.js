@@ -1,18 +1,14 @@
 import { NavigationContainer } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 import AuthNavigator from "./AuthNavigator";
-import SearchNavigator from "./SearchNavigator";
 import ShopTabNavigator from "./ShopTabNavigator";
 
 const MainNavigation = () => {
-  const user = true;
-  const route = "searched";
+  const { userIsLogged } = useSelector((state) => state.login);
+  console.log("userIsLogged " + userIsLogged);
   return (
     <NavigationContainer>
-      {user ? (
-        <>{route !== "search" ? <ShopTabNavigator /> : <SearchNavigator />}</>
-      ) : (
-        <AuthNavigator />
-      )}
+      {userIsLogged ? <ShopTabNavigator /> : <AuthNavigator />}
     </NavigationContainer>
   );
 };
