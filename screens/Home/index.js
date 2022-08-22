@@ -1,49 +1,27 @@
-import { useState } from "react";
-import { CustomForm } from "./components/CustomForm";
+import { useEffect } from "react";
+import { Text, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../store/actions/products.actions";
 import { ListContainer } from "./components/ListContainer";
-import { ModalConfirm } from "../../components/Modal";
 import { Screen } from "../../App.styles";
-import { Button } from "react-native";
 
-const Home = ({navigation}) => {
-  const [textItem, setTextItem] = useState("");
-  const [itemList, setItemList] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const [itemSelected, setItemSelected] = useState(false);
+const Home = () => {
+  const { dataProducts } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
 
-  const deleteItem = (id) => {
-    const filterItemList = itemList.filter((item) => item.id !== id);
-    setItemList(filterItemList);
-    setItemSelected(false);
-    setShowModal(!showModal);
-  };
-
-  const onHandlerModal = (id) => {
-    const itemSelectedId = itemList.filter((item) => item.id === id);
-    setItemSelected(itemSelectedId);
-    setShowModal(!showModal);
-  };
-
-  const cancelar = () => {
-    setShowModal(!showModal);
-  };
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
 
   return (
     <Screen>
-      <Button onPress={() => navigation.navigate('Publish')} title="Publicar propiedad"/>
-      <ModalConfirm
-        showModal={showModal}
-        deleteItem={deleteItem}
-        itemSelected={itemSelected}
-        cancelar={cancelar}
-      />
-      <CustomForm
-        textItem={textItem}
-        setItemList={setItemList}
-        setTextItem={setTextItem}
-        itemList={itemList}
-      />
-      <ListContainer itemList={itemList} onHandlerModal={onHandlerModal} />
+      {dataProducts.length > 0 ? (
+        <ListContainer itemList={dataProducts} />
+      ) : (
+        <View>
+          <Text>No se encontraron productos</Text>
+        </View>
+      )}
     </Screen>
   );
 };

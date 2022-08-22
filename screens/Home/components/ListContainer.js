@@ -2,7 +2,11 @@ import { FlatList } from "react-native";
 import { ViewStyles } from "../Home.styles";
 import { ItemList } from "./ItemList";
 
-export const ListContainer = ({ itemList, onHandlerModal }) => {
+export const ListContainer = ({ itemList }) => {
+  const addToFavorite = (id) => {
+    console.log("agregado como favorito el producto " + id);
+  };
+
   return (
     <ViewStyles>
       <FlatList
@@ -11,7 +15,7 @@ export const ListContainer = ({ itemList, onHandlerModal }) => {
           return (
             <ItemList
               data={data}
-              onHandlerModal={() => onHandlerModal(data.item.id)}
+              addFavorite={() => addToFavorite(data.item.id)}
             />
           );
         }}

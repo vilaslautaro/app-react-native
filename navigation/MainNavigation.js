@@ -1,13 +1,18 @@
 import { NavigationContainer } from "@react-navigation/native";
+import AuthNavigator from "./AuthNavigator";
 import SearchNavigator from "./SearchNavigator";
 import ShopTabNavigator from "./ShopTabNavigator";
 
 const MainNavigation = () => {
-  const route = "searched"
-
+  const user = true;
+  const route = "searched";
   return (
     <NavigationContainer>
-      {route !== "search" ? <ShopTabNavigator /> : <SearchNavigator />}
+      {user ? (
+        <>{route !== "search" ? <ShopTabNavigator /> : <SearchNavigator />}</>
+      ) : (
+        <AuthNavigator />
+      )}
     </NavigationContainer>
   );
 };
