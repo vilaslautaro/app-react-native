@@ -5,7 +5,7 @@ import ShopTabNavigator from "./ShopTabNavigator";
 
 const MainNavigation = () => {
   const { userIsLogged } = useSelector((state) => state.login);
-  console.log("userIsLogged " + userIsLogged);
+  
   return (
     <NavigationContainer>
       {userIsLogged ? <ShopTabNavigator /> : <AuthNavigator />}

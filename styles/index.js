@@ -19,7 +19,18 @@ export const InputStyled = styled(TextInput)`
   background-color: #c1c1c1;
   border-radius: 9px;
   color: #000;
-  box-shadow: 0 0 9px #0008;
+  width: 90%;
+  margin: 0 10px;
+`;
+
+export const InputAreaStyled = styled(TextInput)`
+  background-color: #c1c1c1;
+  border-radius: 9px;
+  color: #000;
+  width: 90%;
+  min-height: 100px;
+  max-height: 150px;
+  margin: 0 10px;
 `;
 
 export const LabelStyled = styled(Text)`
@@ -30,23 +41,30 @@ export const LabelStyled = styled(Text)`
 `;
 
 export const ButtonPrimary = styled(TouchableOpacity)`
-  background-color: blue;
+  background-color: #000;
   color: #fff;
   margin: 5px 0;
   border-radius: 9px;
   padding: 7px 15px;
-  width: fit-content;
-  box-shadow: 0 0 9px #0008;
+`;
+
+export const TextBtnPrimary = styled(Text)`
+  color: #fff;
 `;
 
 export const ButtonSecondary = styled(TouchableOpacity)`
-  border: 1px solid blue;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #000;
+  color: #fff;
   background: transparent;
   border-radius: 9px;
   padding: 7px 15px;
   margin: 5px 0;
-  width: fit-content;
-  box-shadow: 0 0 9px #0008;
+`;
+
+export const TextBtnSecondary = styled(Text)`
+  color: #000;
 `;
 
 export const TextError = styled(Text)`

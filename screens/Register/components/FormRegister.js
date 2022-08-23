@@ -5,6 +5,7 @@ import {
   ButtonPrimary,
   InputStyled,
   LabelStyled,
+  TextBtnPrimary,
   TextError,
 } from "../../../styles";
 
@@ -22,9 +23,7 @@ export const FormRegister = () => {
   });
 
   const onSubmit = ({ email, password }) => {
-    console.log(email);
-    console.log(password);
-    // dispatch(registerUser(email, password));
+    dispatch(registerUser(email, password));
   };
 
   return (
@@ -83,7 +82,9 @@ export const FormRegister = () => {
       />
       <TextError>{errors.password?.message}</TextError>
 
-      <ButtonPrimary title="Registrarme" onPress={handleSubmit(onSubmit)} />
+      <ButtonPrimary onPress={handleSubmit(onSubmit)}>
+        <TextBtnPrimary>Registrarme</TextBtnPrimary>
+      </ButtonPrimary>
     </>
   );
 };

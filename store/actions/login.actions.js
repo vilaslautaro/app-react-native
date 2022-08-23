@@ -1,22 +1,31 @@
-import { LOGIN_USER, LOGOUT_USER } from "../types";
+import {
+  LOADING_USER,
+  LOGIN_ERROR_USER,
+  LOGIN_SUCCESSFULL_USER,
+  LOGOUT_USER,
+} from "../types";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../../database/firebase";
 
 export const loginUser = (email, password) => {
   return async (dispatch) => {
     try {
-      const response = await signInWithEmailAndPassword(auth, email, password);
-      console.log(response);
       dispatch({
-        type: LOGIN_USER,
-        token: "",
-        userId: "",
-        userIsLogged: true,
-        error: "",
-        dataUser: "",
+        type: LOADING_USER,
+      });
+      const response = await signInWithEmailAndPassword(auth, email, password);
+      dispatch({
+        type: LOGIN_SUCCESSFULL_USER,
+        token: response.user?.accessToken,
+        userId: response.user?.uid,
+        dataUser: response.user,
       });
     } catch (error) {
       console.log(error);
+      dispatch({
+        type: LOGIN_ERROR_USER,
+        error: error,
+      });
     }
   };
 };
@@ -24,15 +33,9 @@ export const loginUser = (email, password) => {
 export const signOutUser = () => {
   return async (dispatch) => {
     try {
-      const response = await signOut(auth);
-      console.log(response);
+      await signOut(auth);
       dispatch({
         type: LOGOUT_USER,
-        token: "",
-        userId: "",
-        userIsLogged: false,
-        error: "",
-        dataUser: "",
       });
     } catch (error) {
       console.log(error);

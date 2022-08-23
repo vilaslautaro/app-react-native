@@ -1,17 +1,15 @@
-import { Button, Text, View } from "react-native";
-import { Screen } from "../../App.styles";
+import { ScrollView, View } from "react-native";
+import { FormNewProperties } from "./components/FormNewProperties";
+import { TitleStyled } from "../../styles";
 
-const AddProperties = ({ navigation }) => {
+const AddProperties = () => {
   return (
-    <Screen>
-      <View>
-        <Text>Publicar propiedad</Text>
-        <Button
-          title="Regresar a propiedades"
-          onPress={() => navigation.navigate("Home")}
-        />
-      </View>
-    </Screen>
+    <View style={{ flex: 1 }}>
+      <ScrollView>
+        <TitleStyled>Publicar propiedad</TitleStyled>
+        <FormNewProperties />
+      </ScrollView>
+    </View>
   );
 };
 

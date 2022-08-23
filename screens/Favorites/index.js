@@ -6,12 +6,12 @@ import { getFavorites } from "../../store/actions/favorites.actions";
 import Favorite from "./components/Favorite";
 
 const Favorites = () => {
-  //const { dataFavorites } = useSelector((state) => state.favorites);
-  //const dispatch = useDispatch();
-  const dataFavorites = [];
-  //useEffect(() => {
-  //  dispatch(getFavorites());
-  //}, []);
+  const { dataFavorites } = useSelector((state) => state.favorites);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getFavorites());
+  }, []);
 
   return (
     <Screen>
@@ -28,7 +28,9 @@ const Favorites = () => {
             }}
           />
         ) : (
-          "Cargando"
+          <View>
+            <Text>No se encontraron favoritos</Text>
+          </View>
         )}
       </View>
     </Screen>

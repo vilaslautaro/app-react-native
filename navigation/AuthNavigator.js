@@ -12,11 +12,11 @@ const AuthNavigator = () => {
         options={{ title: "Ingresar" }}
         component={Login}
       />
-      {/* <Stack.Screen
+      <Stack.Screen
         name="Register"
         options={{ title: "Registrarse" }}
         component={Register}
-      /> */}
+      />
     </Stack.Navigator>
   );
 };

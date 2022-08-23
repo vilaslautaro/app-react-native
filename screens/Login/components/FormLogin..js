@@ -1,15 +1,18 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Controller, useForm } from "react-hook-form";
+import Spinner from "react-native-loading-spinner-overlay";
 import { loginUser } from "../../../store/actions/login.actions";
 import {
   ButtonPrimary,
   InputStyled,
   LabelStyled,
+  TextBtnPrimary,
   TextError,
 } from "../../../styles";
 
 export const FormLogin = () => {
   const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.login);
   const {
     control,
     handleSubmit,
@@ -22,13 +25,17 @@ export const FormLogin = () => {
   });
 
   const onSubmit = ({ email, password }) => {
-    console.log(email);
-    console.log(password);
-    //dispatch(loginUser(email, password));
+    dispatch(loginUser(email, password));
   };
 
   return (
     <>
+      <Spinner
+        visible={loading}
+        textContent={"Cargando..."}
+        textStyle={{ color: "#fff" }}
+        overlayColor="rgba(0, 0, 0, 0.6)"
+      />
       <LabelStyled>Email:</LabelStyled>
       <Controller
         control={control}
@@ -83,7 +90,9 @@ export const FormLogin = () => {
       />
       <TextError>{errors.password?.message}</TextError>
 
-      <ButtonPrimary title="Iniciar Sesion" onPress={handleSubmit(onSubmit)} />
+      <ButtonPrimary onPress={handleSubmit(onSubmit)}>
+        <TextBtnPrimary>Iniciar Sesion</TextBtnPrimary>
+      </ButtonPrimary>
     </>
   );
 };
