@@ -3,6 +3,11 @@ import { useFonts } from "expo-font";
 import { Provider } from "react-redux";
 import store from "./store";
 import MainNavigation from "./navigation/MainNavigation";
+import { init } from "./database/sqlDb";
+
+init()
+  .then(() => true)
+  .catch((error) => console.log(error));
 
 export default function App() {
   const [loaded] = useFonts({

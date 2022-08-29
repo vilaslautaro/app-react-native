@@ -1,8 +1,10 @@
 import * as FileSystem from "expo-file-system";
+import { fetchAddress, insertAddress } from "../../database/sqlDb";
 import {
   ADD_NEW_PLACES,
   ERROR_ADD_NEW_PLACES,
   LOADING_NEW_PLACES,
+  GET_PLACES,
 } from "../types";
 
 export const addPlace = (title, image, location) => {
@@ -17,7 +19,6 @@ export const addPlace = (title, image, location) => {
     if (!data.results) console.log("coordenadas no encontradas");
 
     const address = data.results[0].formatted_address;
-    console.log(address);
 
     const fileName = image.split("/").pop();
     const Path = FileSystem.documentDirectory + fileName;
@@ -27,8 +28,16 @@ export const addPlace = (title, image, location) => {
         from: image,
         to: Path,
       });
+      const result = insertAddress(
+        title,
+        Path,
+        address,
+        location.lat,
+        location.lng
+      );
       dispatch({
         type: ADD_NEW_PLACES,
+        id: result.insertId,
         payload: {
           title,
           image: Path,
@@ -40,6 +49,17 @@ export const addPlace = (title, image, location) => {
     } catch (error) {
       console.log(error);
       dispatch({ type: ERROR_ADD_NEW_PLACES, error: error });
+    }
+  };
+};
+
+export const getAddress = () => {
+  return async (dispatch) => {
+    try {
+      const result = fetchAddress();
+      dispatch({ type: GET_PLACES, places: result.rows?._array });
+    } catch (error) {
+      throw error;
     }
   };
 };
