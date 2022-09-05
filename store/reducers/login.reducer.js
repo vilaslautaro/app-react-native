@@ -33,7 +33,7 @@ const loginReducer = (state = initialState, action) => {
         userId: "",
         error: action.error,
         dataUser: "",
-        userIsLogged: true,
+        userIsLogged: false,
         loading: false,
       };
     case LOGOUT_USER:

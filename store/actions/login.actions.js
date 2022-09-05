@@ -14,15 +14,23 @@ export const loginUser = (email, password) => {
         type: LOADING_USER,
       });
       const response = await signInWithEmailAndPassword(auth, email, password);
-      dispatch({
-        type: LOGIN_SUCCESSFULL_USER,
-        token: response.user?.accessToken,
-        userId: response.user?.uid,
-        dataUser: response.user,
-      });
+      console.log(response);
+      if (response.user.uid) {
+        return dispatch({
+          type: LOGIN_SUCCESSFULL_USER,
+          token: response.user?.accessToken,
+          userId: response.user?.uid,
+          dataUser: response.user,
+        });
+      } else {
+        return dispatch({
+          type: LOGIN_ERROR_USER,
+          error: error,
+        });
+      }
     } catch (error) {
       console.log(error);
-      dispatch({
+      return dispatch({
         type: LOGIN_ERROR_USER,
         error: error,
       });

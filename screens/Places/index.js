@@ -13,6 +13,10 @@ const Places = () => {
     dispatch(addressAction.getAddress());
   }, []);
 
+  useEffect(() => {
+    console.log(places);
+  }, [places]);
+
   return (
     <Screen>
       {places.length > 0 ? (

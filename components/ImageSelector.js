@@ -42,8 +42,8 @@ export const ImageSelector = (props) => {
       ) : (
         <Image
           style={{
-            width: "90%",
-            height: "90%",
+            width: "80%",
+            height: "20%",
           }}
           source={{ uri: pickedUri }}
         />

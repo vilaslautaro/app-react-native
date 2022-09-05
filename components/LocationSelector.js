@@ -27,11 +27,13 @@ export const LocationSelector = (props) => {
 
   const handleGetLocation = async () => {
     const isLocationOk = await verifyPermissions();
-    if (!isLocationOk) return;
+    if (!isLocationOk) return console.log(isLocationOk);
 
     const location = await Location.getCurrentPositionAsync({
       timeout: 5000,
     });
+
+    console.log(location);
 
     setPickedLocation({
       lat: location.coords.latitude,
@@ -46,7 +48,7 @@ export const LocationSelector = (props) => {
 
   const handlePickOnMap = async () => {
     const isLocationOk = await verifyPermissions();
-    if (!isLocationOk) return;
+    if (!isLocationOk) return console.log(isLocationOk);
 
     navigation.navigate("Map");
   };
@@ -62,20 +64,25 @@ export const LocationSelector = (props) => {
 
   return (
     <View>
-      <View>
-        {pickedLocation ? (
-          <MapPreview location={pickedLocation}>
-            <Text>Ubicacion en proceso...</Text>
-          </MapPreview>
-        ) : (
-          <Text>Ubicacion pendiente</Text>
-        )}
-      </View>
-      <Button title="Obtener ubicacion actual" onPress={handleGetLocation} />
-      <Button
-        title="Elegir ubicacion desde el mapa"
-        onPress={handlePickOnMap}
-      />
+      {pickedLocation ? (
+        <MapPreview location={pickedLocation}>
+          <Text>Ubicacion en proceso...</Text>
+        </MapPreview>
+      ) : (
+        <Text>Ubicacion pendiente</Text>
+      )}
+      {!pickedLocation && (
+        <>
+          <Button
+            title="Obtener ubicacion actual"
+            onPress={handleGetLocation}
+          />
+          <Button
+            title="Elegir ubicacion desde el mapa"
+            onPress={handlePickOnMap}
+          />
+        </>
+      )}
     </View>
   );
 };

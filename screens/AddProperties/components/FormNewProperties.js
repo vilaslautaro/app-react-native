@@ -24,7 +24,7 @@ export const FormNewProperties = ({ navigation }) => {
 
   const onSubmit = (values) => {
     dispatch(addPlace(values.titleProperty, image, location));
-    navigation.navigate("Direcciones");
+    navigation.navigate("Propiedades");
   };
 
   return (

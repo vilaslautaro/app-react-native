@@ -1,8 +1,8 @@
 import { ContainerItemList, TextStyles } from "../Home.styles";
 
-export const ItemList = ({ addFavorite, data }) => {
+export const ItemList = ({ data }) => {
   return (
-    <ContainerItemList onPress={() => addFavorite()}>
+    <ContainerItemList>
       <TextStyles>{data.item.title}</TextStyles>
       <TextStyles>{data.item.id}</TextStyles>
       <TextStyles>{data.item.category}</TextStyles>
