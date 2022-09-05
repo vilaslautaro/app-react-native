@@ -34,17 +34,14 @@ const placesReducer = (state = initialState, action) => {
     case GET_PLACES:
       return {
         ...state,
-        places: action.places.map(
-          (item) =>
-            new Place(
-              item.id.toString(),
-              item.title,
-              item.image,
-              item.address,
-              item.lat,
-              item.lng
-            )
-        ),
+        places: action.places.map((item) => ({
+          id: item.id.toString(),
+          title: item.title,
+          image: item.image,
+          address: item.address,
+          lat: item.lat,
+          lng: item.lng,
+        })),
       };
     case LOADING_NEW_PLACES:
       return {

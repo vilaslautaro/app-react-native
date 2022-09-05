@@ -6,6 +6,7 @@ import {
   LOADING_NEW_PLACES,
   GET_PLACES,
 } from "../types";
+import { GOOGLE_MAP_API_KEY } from "@env";
 
 export const addPlace = (title, image, location) => {
   return async (dispatch) => {
@@ -37,8 +38,8 @@ export const addPlace = (title, image, location) => {
       );
       dispatch({
         type: ADD_NEW_PLACES,
-        id: result.insertId,
         payload: {
+          id: result.insertId,
           title,
           image: Path,
           address,
