@@ -1,4 +1,3 @@
-import { signInWithPhoneNumber } from "firebase/auth";
 import Place from "../../models/Place";
 import {
   ADD_NEW_PLACES,
@@ -33,17 +32,20 @@ const placesReducer = (state = initialState, action) => {
         loading: false,
       };
     case GET_PLACES:
-      return {...state, places: action.places.map(item =>
-         new Place(
-          item.id.toString(),
-          item.title,
-          item.image,
-          item.address,
-          item.lat,
-          item.lng,
-         )
-
-      )}
+      return {
+        ...state,
+        places: action.places.map(
+          (item) =>
+            new Place(
+              item.id.toString(),
+              item.title,
+              item.image,
+              item.address,
+              item.lat,
+              item.lng
+            )
+        ),
+      };
     case LOADING_NEW_PLACES:
       return {
         ...state,

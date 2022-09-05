@@ -2,10 +2,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome5 } from "@expo/vector-icons";
 import AddProperties from "../screens/AddProperties";
 import Home from "../screens/Home";
-import Favorites from "../screens/Favorites";
-import SearchNavigator from "./SearchNavigator";
-import { colors } from "../constants/colors";
+import Places from "../screens/Places";
 import { MapScreen } from "../screens/MapScreen";
+import { colors } from "../constants/colors";
 
 const ShopTabNavigator = () => {
   const Tabs = createBottomTabNavigator();
@@ -32,16 +31,6 @@ const ShopTabNavigator = () => {
           })}
         />
         <Tabs.Screen
-          name="Buscar"
-          component={SearchNavigator}
-          options={() => ({
-            title: "Buscar",
-            tabBarIcon: ({ color }) => (
-              <FontAwesome5 name="search" color={color} size={26} />
-            ),
-          })}
-        />
-        <Tabs.Screen
           name="Publicar"
           component={AddProperties}
           options={() => ({
@@ -52,22 +41,12 @@ const ShopTabNavigator = () => {
           })}
         />
         <Tabs.Screen
-          name="Favoritos"
-          component={Favorites}
+          name="Propiedades"
+          component={Places}
           options={() => ({
-            title: "Favoritos",
+            title: "Propiedades",
             tabBarIcon: ({ color }) => (
-              <FontAwesome5 name="heart" color={color} size={26} />
-            ),
-          })}
-        />
-        <Tabs.Screen
-          name="Perfil"
-          component={Favorites}
-          options={() => ({
-            title: "Perfil",
-            tabBarIcon: ({ color }) => (
-              <FontAwesome5 name="user-circle" color={color} size={26} />
+              <FontAwesome5 name="home" color={color} size={26} />
             ),
           })}
         />
@@ -76,9 +55,7 @@ const ShopTabNavigator = () => {
           component={MapScreen}
           options={() => ({
             title: "Map",
-            tabBarIcon: ({ color }) => (
-              <FontAwesome5 name="user-circle" color={color} size={26} />
-            ),
+            tabBarButton: () => null,
           })}
         />
       </Tabs.Navigator>

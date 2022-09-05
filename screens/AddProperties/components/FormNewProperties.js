@@ -1,17 +1,21 @@
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Picker } from "@react-native-picker/picker";
+import { useDispatch } from "react-redux";
 import { ImageSelector } from "../../../components/ImageSelector";
+import { LocationSelector } from "../../../components/LocationSelector";
+import { addPlace } from "../../../store/actions/places.actions";
 import {
   ButtonPrimary,
-  InputAreaStyled,
   InputStyled,
   LabelStyled,
   TextBtnPrimary,
   TextError,
 } from "../../../styles";
-import { LocationSelector } from "../../../components/LocationSelector";
 
-export const FormNewProperties = () => {
+export const FormNewProperties = ({ navigation }) => {
+  const [image, setImage] = useState("");
+  const [location, setLocation] = useState("");
+  const dispatch = useDispatch();
   const {
     control,
     handleSubmit,
@@ -19,30 +23,12 @@ export const FormNewProperties = () => {
   } = useForm();
 
   const onSubmit = (values) => {
-    console.log(values);
+    dispatch(addPlace(values.titleProperty, image, location));
+    navigation.navigate("Direcciones");
   };
 
   return (
     <>
-      <LabelStyled>Tipo</LabelStyled>
-      <Controller
-        control={control}
-        rules={{
-          required: "Campo requerido",
-        }}
-        render={({ field: { onChange, value } }) => (
-          <Picker
-            selectedValue={value}
-            onValueChange={(type) => onChange(type)}
-          >
-            <Picker.Item label="Casa" value="3" />
-            <Picker.Item label="Departamento" value="2" />
-            <Picker.Item label="Duplex" value="1" />
-          </Picker>
-        )}
-        name="typeProperty"
-      />
-      <TextError>{errors.typeProperty?.message}</TextError>
       <LabelStyled>Titulo</LabelStyled>
       <Controller
         control={control}
@@ -68,42 +54,15 @@ export const FormNewProperties = () => {
         name="titleProperty"
       />
       <TextError>{errors.titleProperty?.message}</TextError>
-      <LabelStyled>Descripcion</LabelStyled>
-      <Controller
-        control={control}
-        rules={{
-          required: "Campo requerido",
-          minLength: {
-            value: 10,
-            message: "Minimo 10 caracteres",
-          },
-          maxLength: {
-            value: 200,
-            message: "Numero de caracteres maximo alcanzado",
-          },
-        }}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <InputAreaStyled
-            multiline={true}
-            numberOfLines={4}
-            autoCapitalize="none"
-            onBlur={onBlur}
-            onChangeText={onChange}
-            value={value}
-          />
-        )}
-        name="descriptionProperty"
-      />
-      <TextError>{errors.descriptionProperty?.message}</TextError>
-          
+
       <LabelStyled>Subir imagen</LabelStyled>
-      <ImageSelector onImage={(image) => console.log(image)} />
+      <ImageSelector onImage={(image) => setImage(image)} />
 
       <LabelStyled>Ubicacion</LabelStyled>
-      <LocationSelector onLocation={(location) => console.log(location)} />
+      <LocationSelector onLocation={(location) => setLocation(location)} />
 
       <ButtonPrimary onPress={handleSubmit(onSubmit)}>
-        <TextBtnPrimary>Subir propiedad</TextBtnPrimary>
+        <TextBtnPrimary>Cargar nueva propiedad</TextBtnPrimary>
       </ButtonPrimary>
     </>
   );

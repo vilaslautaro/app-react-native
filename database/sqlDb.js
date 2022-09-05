@@ -17,9 +17,8 @@ export const init = () => {
         }
       );
     });
-
-    return promise;
   });
+  return promise;
 };
 
 export const insertAddress = (title, image, address, lat, lng) => {
@@ -36,8 +35,8 @@ export const insertAddress = (title, image, address, lat, lng) => {
         }
       );
     });
-    return promise;
   });
+  return promise;
 };
 
 export const fetchAddress = () => {
@@ -54,6 +53,6 @@ export const fetchAddress = () => {
         }
       );
     });
-    return promise;
   });
+  return promise;
 };

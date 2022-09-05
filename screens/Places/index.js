@@ -1,22 +1,22 @@
 import { useEffect } from "react";
 import { Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../store/actions/products.actions";
+import * as addressAction from "../../store/actions/places.actions";
 import { ListContainer } from "./components/ListContainer";
 import { Screen } from "../../App.styles";
 
-const Home = () => {
-  const { dataProducts } = useSelector((state) => state.products);
+const Places = () => {
+  const { places } = useSelector((state) => state.places);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProducts());
+    dispatch(addressAction.getAddress());
   }, []);
 
   return (
     <Screen>
-      {dataProducts.length > 0 ? (
-        <ListContainer itemList={dataProducts} />
+      {places.length > 0 ? (
+        <ListContainer itemList={places} />
       ) : (
         <View>
           <Text>No se encontraron propiedades</Text>
@@ -26,4 +26,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Places;
