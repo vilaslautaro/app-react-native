@@ -19,11 +19,15 @@ export const FormNewProperties = ({ navigation }) => {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (values) => {
     dispatch(addPlace(values.titleProperty, image, location));
+    reset();
+    setImage("");
+    setLocation("");
     navigation.navigate("Propiedades");
   };
 
